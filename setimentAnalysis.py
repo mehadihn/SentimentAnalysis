@@ -13,9 +13,9 @@ from sklearn.metrics import classification_report
 
 
 # train Data
-trainData = pd.read_csv("IMDB Dataset.csv")
+trainData = pd.read_csv("train1.csv")
 # test Data
-testData = pd.read_csv("test.csv")
+testData = pd.read_csv("test1.csv")
 
 
 
@@ -49,7 +49,17 @@ print('negative: ', report['negative'])
 
 #f1-score = 2 * ((precision * recall)/(precision + recall))
 
+i = True
 
-review = """I absolutley liked the product."""
+
+#while (i == True):
+    
+st = input("Enter Your Test String:")
+
+review = st
 review_vector = vectorizer.transform([review]) # vectorizing
 print(classifier_linear.predict(review_vector))
+
+prediction_linear = classifier_linear.predict(review_vector)
+
+
