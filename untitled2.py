@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Dec  7 09:49:44 2019
-
 @author: Mehadi Hassan
 """
 import pandas as pd
@@ -77,39 +76,7 @@ def senti():
 
 	prediction_linear = classifier_linear.predict(review_vector)
 
+	label2 = Label(root, text=prediction_linear,font=('Liberation Serif',20,"bold"),fg = "black").place(x=220, y=420)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-submit = Button(root, text = "Submit", width=30, height = 5, command = senti).place(x = 250 , y = 300)
+submit = Button(root, text = "Submit", width=30, height = 5, command = senti).place(x = 200 , y = 300)
 root.mainloop()
