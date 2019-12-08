@@ -82,3 +82,4 @@ def senti():
 
 submit = Button(root, text = "Submit",font=('Liberation Serif',10,"bold"), width=15, height = 2, command = senti).place(relx=0.5, rely=0.45, anchor=CENTER)
 root.mainloop()
+
