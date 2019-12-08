@@ -68,11 +68,13 @@ def senti():
     prediction_linear = classifier_linear.predict(review_vector)
     x = ""
     if prediction_linear[0] == 'negative':
+        
         x = "Given Text is Negative"
 
         label2 = Label(root, text=x,font=('Liberation Serif',20,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
 
     else:
+        
         x = "Given Text is Positive"
         label2 = Label(root, text=x,font=('Liberation Serif',21,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
 
