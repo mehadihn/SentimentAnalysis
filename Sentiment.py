@@ -71,7 +71,7 @@ def senti():
         
         x = "Given Text is Negative"
 
-        label2 = Label(root, text=x,font=('Liberation Serif',20,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
+        label2 = Label(root, text=x,font=('Liberation Serif',21,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
 
     else:
         
