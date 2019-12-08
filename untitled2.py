@@ -46,37 +46,39 @@ print('negative: ', report['negative'])
 
 
 
+
 from tkinter import *
 root = Tk()
 root.title("Sentiment Analysis")
 root.geometry("640x640+0+0")
 
 heading = Label(root, text="Sentiment Analysis App", font=('Liberation Serif',30,"bold"),fg = "steelblue").pack()
-label1 = Label(root, text="Enter Your Text:",font=('Liberation Serif',20,"bold"),fg = "black").place(x=10, y=200)
-
+label1 = Label(root, text="Enter Your Text:",font=('Liberation Serif',20,"bold"),fg = "black").place(relx=0.5, rely=0.2, anchor=CENTER)
+#label1 = Label(root, text="Enter Your Text:",font=('Liberation Serif',20,"bold"),fg = "black").place(x=10, y=200)
 name = StringVar()
-entry_box = Entry(root, textvariable = name , width=30).place(x = 280, y = 210)
+entry_box = Entry(root, font=("Calibri",20), textvariable = name , width=30).place(relx=0.5, rely=0.35, anchor=CENTER)
+
 
 
 def senti():
-	print(str(name.get()))
-	# -*- coding: utf-8 -*-
-#f1-score = 2 * ((precision * recall)/(precision + recall))
+    print(str(name.get()))
+    review = str(name.get())
+    review_vector = vectorizer.transform([review])
+    print(classifier_linear.predict(review_vector))
+    prediction_linear = classifier_linear.predict(review_vector)
+    x = ""
+    if prediction_linear[0] == 'negative':
+        x = "Given Text is Negative"
 
-	i = True
+        label2 = Label(root, text=x,font=('Liberation Serif',20,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
+
+    else:
+        x = "Given Text is Positive"
+        label2 = Label(root, text=x,font=('Liberation Serif',21,"bold"),fg = "black").place(relx=0.5, rely=0.6, anchor=CENTER)
 
 
-#while (i == True):
-    
-	#st = input("Enter Your Test String:")
 
-	review = str(name.get())
-	review_vector = vectorizer.transform([review]) # vectorizing
-	print(classifier_linear.predict(review_vector))
 
-	prediction_linear = classifier_linear.predict(review_vector)
 
-	label2 = Label(root, text=prediction_linear,font=('Liberation Serif',20,"bold"),fg = "black").place(x=220, y=420)
-
-submit = Button(root, text = "Submit", width=30, height = 5, command = senti).place(x = 200 , y = 300)
+submit = Button(root, text = "Submit",font=('Liberation Serif',10,"bold"), width=15, height = 2, command = senti).place(relx=0.5, rely=0.45, anchor=CENTER)
 root.mainloop()
