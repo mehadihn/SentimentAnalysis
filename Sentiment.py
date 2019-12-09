@@ -37,14 +37,61 @@ time_linear_train = t1-t0
 time_linear_predict = t2-t1
 
 # results
+print()
 
-print("Training time: %fs; Prediction time: %fs" % (time_linear_train, time_linear_predict))
+print("Training time:", time_linear_train)
+print("Prediction time:", time_linear_predict)
+
+print()
+print("For Positive Data:")
 report = classification_report(testData['sentiment'], prediction_linear, output_dict=True)
-print('positive: ', report['positive'])
-print('negative: ', report['negative'])
+print("Precision: ",report['positive']['precision'])
+print("Recall: ",report['positive']['recall'])
+print("f1-score: ",report['positive']['f1-score'])
+
+print()
+print("For Negative Data:")
+report = classification_report(testData['sentiment'], prediction_linear, output_dict=True)
+print("Precision: ",report['negative']['precision'])
+print("Recall: ",report['negative']['recall'])
+print("f1-score: ",report['negative']['f1-score'])
+
+#print('positive: ', report['positive'])
+#print('negative: ', report['negative'])
 
 
+import numpy as np
+import matplotlib.pyplot as plt
 
+# data to plot
+n_groups = 3
+means_frank = (report['positive']['precision'], report['positive']['recall'], report['positive']['f1-score'])
+means_guido = (report['negative']['precision'], report['negative']['recall'], report['negative']['f1-score'])
+
+# create plot
+fig, ax = plt.subplots()
+index = np.arange(n_groups)
+bar_width = 0.35
+opacity = 0.8
+
+rects1 = plt.bar(index, means_frank, bar_width,
+alpha=opacity,
+color='b',
+label='Positive')
+
+rects2 = plt.bar(index + bar_width, means_guido, bar_width,
+alpha=opacity,
+color='g',
+label='Negative')
+
+plt.xlabel('Attribute')
+plt.ylabel('Scores')
+plt.title('Scores by Attributes')
+plt.xticks(index + bar_width, ('Precision', 'Recall', 'f1-score'))
+plt.legend()
+
+plt.tight_layout()
+plt.show()
 
 
 from tkinter import *
